@@ -3,6 +3,7 @@ package com.ashb;
 import com.ashb.model.Loader;
 import com.ashb.model.RawModel;
 import com.ashb.render.Renderer;
+import com.ashb.shaders.StaticShader;
 import com.ashb.window.WindowManager;
 
 public class Launcher {
@@ -11,6 +12,7 @@ public class Launcher {
 
         Loader loader = new Loader();
         Renderer renderer = new Renderer();
+        StaticShader staticShader = new StaticShader();
 
         float[] vertices = {
                 -0.5f, 0.5f, 0f,
@@ -28,10 +30,13 @@ public class Launcher {
 
         while (!WindowManager.shouldWindowClose()) {
             renderer.prepare();
+            staticShader.start();
             renderer.render(rawModel);
+            staticShader.stop();
             WindowManager.updateWindow();
         }
 
+        staticShader.cleanUp();
         loader.cleanUp();
         WindowManager.destroyWindow();
     }
