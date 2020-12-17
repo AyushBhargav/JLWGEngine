@@ -1,4 +1,4 @@
-package com.ashb.model;
+package com.ashb.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
